@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RPT01_CAC">
+          <Key>
+            <PropertyRef Name="REPORTID" />
+          </Key>
+          <Property Name="REPORTID" Type="char" MaxLength="28" Nullable="false" />
+          <Property Name="OBCC" Type="char" MaxLength="5" />
+          <Property Name="ODATE" Type="char" MaxLength="8" />
+          <Property Name="OTIME" Type="char" MaxLength="6" />
+          <Property Name="VTIME" Type="char" MaxLength="21" />
+          <Property Name="RECEIVETIME" Type="date" Nullable="false" />
+          <Property Name="INSERTTIME" Type="date" Nullable="false" />
+          <Property Name="TT" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="AA" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="KK" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CCCC" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="HEADDATE" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="HEADTIME" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="BBB" Type="char" MaxLength="3" />
+          <Property Name="RPTCONTENT" Type="clob" Nullable="false" />
+          <Property Name="RPTSTATE" Type="number" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="REFTIME" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="RPT01_CAC" EntityType="Self.RPT01_CAC" Schema="QDATM" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RPT01_CAC">
+          <Key>
+            <PropertyRef Name="REPORTID" />
+          </Key>
+          <Property Name="REPORTID" Type="String" MaxLength="28" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="OBCC" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="ODATE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="OTIME" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="VTIME" Type="String" MaxLength="21" FixedLength="true" Unicode="false" />
+          <Property Name="RECEIVETIME" Type="DateTime" Nullable="false" />
+          <Property Name="INSERTTIME" Type="DateTime" Nullable="false" />
+          <Property Name="TT" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="AA" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="KK" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CCCC" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="HEADDATE" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="HEADTIME" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="BBB" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="RPTCONTENT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RPTSTATE" Type="Boolean" Nullable="false" />
+          <Property Name="REFTIME" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="OracleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RPT01_CAC" EntityType="Self.RPT01_CAC" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="OracleEntities">
+          <EntitySetMapping Name="RPT01_CAC">
+            <EntityTypeMapping TypeName="Model.RPT01_CAC">
+              <MappingFragment StoreEntitySet="RPT01_CAC">
+                <ScalarProperty Name="REPORTID" ColumnName="REPORTID" />
+                <ScalarProperty Name="OBCC" ColumnName="OBCC" />
+                <ScalarProperty Name="ODATE" ColumnName="ODATE" />
+                <ScalarProperty Name="OTIME" ColumnName="OTIME" />
+                <ScalarProperty Name="VTIME" ColumnName="VTIME" />
+                <ScalarProperty Name="RECEIVETIME" ColumnName="RECEIVETIME" />
+                <ScalarProperty Name="INSERTTIME" ColumnName="INSERTTIME" />
+                <ScalarProperty Name="TT" ColumnName="TT" />
+                <ScalarProperty Name="AA" ColumnName="AA" />
+                <ScalarProperty Name="KK" ColumnName="KK" />
+                <ScalarProperty Name="CCCC" ColumnName="CCCC" />
+                <ScalarProperty Name="HEADDATE" ColumnName="HEADDATE" />
+                <ScalarProperty Name="HEADTIME" ColumnName="HEADTIME" />
+                <ScalarProperty Name="BBB" ColumnName="BBB" />
+                <ScalarProperty Name="RPTCONTENT" ColumnName="RPTCONTENT" />
+                <ScalarProperty Name="RPTSTATE" ColumnName="RPTSTATE" />
+                <ScalarProperty Name="REFTIME" ColumnName="REFTIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

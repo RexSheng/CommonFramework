@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C842FDB4-DF11-48E9-BBB8-4E93E74596D4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommonFramework.Test</RootNamespace>
+    <AssemblyName>CommonFramework.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.2400\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.12.1.2400\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.2.3\lib\net45\StackExchange.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helper\EmailHelper.cs" />
+    <Compile Include="MySql\BaseDao.cs" />
+    <Compile Include="MySql\IBaseDao.cs" />
+    <Compile Include="MySql\IMySqlAdoDao.cs" />
+    <Compile Include="MySql\MySqlAdoDao.cs" />
+    <Compile Include="MySql\MySqlEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MySqlEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MySql\MySqlEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MySqlEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MySql\MySqlEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MySqlEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MySql\testuser.cs">
+      <DependentUpon>MySqlEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Oracle\BaseDao.cs" />
+    <Compile Include="Oracle\IBaseDao.cs" />
+    <Compile Include="Oracle\IOracleHelper.cs" />
+    <Compile Include="Oracle\OracleEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OracleEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Oracle\OracleEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OracleEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Oracle\OracleEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OracleEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Oracle\OracleHelper.cs" />
+    <Compile Include="Oracle\RPT01_CAC.cs">
+      <DependentUpon>OracleEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Redis\RedisHelper.cs" />
+    <Compile Include="SqlServer\BaseDao.cs" />
+    <Compile Include="SqlServer\DbContextProvider.cs" />
+    <Compile Include="SqlServer\gn_VW_UserInfo.cs">
+      <DependentUpon>TestEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\IBaseDao.cs" />
+    <Compile Include="SqlServer\IUserDao.cs" />
+    <Compile Include="SqlServer\R_UserRole.cs">
+      <DependentUpon>TestEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\TestEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\TestEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\TestEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\TransferHistory.cs">
+      <DependentUpon>TestEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\UserDao.cs" />
+    <Compile Include="SqlServer\UserInfo.cs">
+      <DependentUpon>TestEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServer\ViewConfig.cs">
+      <DependentUpon>TestEntity.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="SqlServer\TestEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TestEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="MySql\MySqlEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MySqlEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MySql\MySqlEntity.edmx.diagram">
+      <DependentUpon>MySqlEntity.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Oracle\OracleEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OracleEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Oracle\OracleEntity.edmx.diagram">
+      <DependentUpon>OracleEntity.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="SqlServer\TestEntity.edmx.diagram">
+      <DependentUpon>TestEntity.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MySql\MySqlEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MySqlEntity.edmx</DependentUpon>
+      <LastGenOutput>MySqlEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MySql\MySqlEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MySqlEntity.edmx</DependentUpon>
+      <LastGenOutput>MySqlEntity.cs</LastGenOutput>
+    </Content>
+    <Content Include="Oracle\OracleEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OracleEntity.edmx</DependentUpon>
+      <LastGenOutput>OracleEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Oracle\OracleEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OracleEntity.edmx</DependentUpon>
+      <LastGenOutput>OracleEntity.cs</LastGenOutput>
+    </Content>
+    <Content Include="SqlServer\TestEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TestEntity.Context.cs</LastGenOutput>
+      <DependentUpon>TestEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="SqlServer\TestEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestEntity.edmx</DependentUpon>
+      <LastGenOutput>TestEntity.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonFramework.Extension\CommonFramework.Extension.csproj">
+      <Project>{a500d676-2dec-450d-8486-8bcf432e923b}</Project>
+      <Name>CommonFramework.Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonFramework.MySql\CommonFramework.MySql.csproj">
+      <Project>{639811ce-efa7-49e3-9a59-34f8ffcdbe80}</Project>
+      <Name>CommonFramework.MySql</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonFramework.Oracle\CommonFramework.Oracle.csproj">
+      <Project>{795ae447-8a89-441d-a9d3-0d440a192c14}</Project>
+      <Name>CommonFramework.Oracle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonFramework.Redis\CommonFramework.Redis.csproj">
+      <Project>{451fe034-2cc8-4371-99b9-2c5ab89a3835}</Project>
+      <Name>CommonFramework.Redis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonFramework.SqlServer\CommonFramework.SqlServer.csproj">
+      <Project>{182a520f-acb9-4278-9524-253b2bec0ea2}</Project>
+      <Name>CommonFramework.SqlServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
