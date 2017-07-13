@@ -59,6 +59,7 @@
     <Compile Include="EntityFramework\IBaseDao.cs" />
     <Compile Include="EntityFramework\ICommonInterface.cs" />
     <Compile Include="EntityFramework\Provider.cs" />
+    <Compile Include="EntityFramework\SqlExtension.cs" />
     <Compile Include="PagedList\PagedList.cs" />
     <Compile Include="PagedList\PagedListExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

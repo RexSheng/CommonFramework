@@ -18,7 +18,7 @@ namespace CommonFramework.Test
     {
         static void Main(string[] args)
         {
-            Email();
+           // Email();
         }
         /* sqlserver
         static void SqlServer() {
