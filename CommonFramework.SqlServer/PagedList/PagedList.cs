@@ -18,6 +18,16 @@ namespace CommonFramework.SqlServer.PagedList
 
         public int TotalPageCount { get; set; }
 
+        private CommonPagedList() { }
+
+        public CommonPagedList(CommonPagedList<T> list) {
+            this.PageIndex = list.PageIndex;
+            this.PageSize = list.PageSize;
+            this.TotalItemCount = list.TotalItemCount;
+            this.TotalPageCount = list.TotalPageCount;
+            AddRange(list);
+        }
+
         public CommonPagedList(IQueryable<T> list, int pageIndex, int pageSize)
         {
             if (pageIndex <= 0)
