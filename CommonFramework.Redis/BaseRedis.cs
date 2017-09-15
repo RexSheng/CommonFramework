@@ -9,30 +9,34 @@ using Newtonsoft.Json;
 namespace CommonFramework.Redis
 {
     public class BaseRedis<T>
-        where T:new()
+        where T : new()
     {
         public static string _host, _pwd, _clientName;
         public static int _port, _dbId;
-         
+
         public BaseRedis(string host, int port = 6379, string pwd = "", string clientName = "", int dbId = 0)
         {
             _host = host;
             _port = port;
             _pwd = pwd;
             _clientName = clientName;
-            _dbId = dbId; 
-        } 
+            _dbId = dbId;
+        }
         public static ConnectionMultiplexer _redis;
 
         protected static object _locker = new object();
 
-        public static ConnectionMultiplexer manager {
-            get {
-                if (_redis == null) {
-                    lock (_locker) {
+        public static ConnectionMultiplexer manager
+        {
+            get
+            {
+                if (_redis == null)
+                {
+                    lock (_locker)
+                    {
                         if (_redis != null) return _redis;
                         T t = new T();
-                        
+
                         _redis = GetManager();
                         return _redis;
                     }
@@ -45,7 +49,7 @@ namespace CommonFramework.Redis
         {
             ConfigurationOptions options = new ConfigurationOptions();
             options.EndPoints.Add(_host, _port);
-            if(!string.IsNullOrEmpty(_pwd))
+            if (!string.IsNullOrEmpty(_pwd))
                 options.Password = _pwd;
             options.ResolveDns = true;
             if (!string.IsNullOrEmpty(_clientName))
@@ -55,7 +59,8 @@ namespace CommonFramework.Redis
             return ConnectionMultiplexer.Connect(options);
         }
 
-        private static IDatabase GetClient() {
+        private static IDatabase GetClient()
+        {
             IDatabase db = manager.GetDatabase(_dbId);
             return db;
         }
@@ -341,6 +346,46 @@ namespace CommonFramework.Redis
             }
             return result.ToArray();
         }
+
+        public static void SetString(string key, object value, int expireMinutes = 0)
+        {
+            var client = GetClient();
+            if (expireMinutes > 0)
+            {
+                client.StringSet(key, (RedisValue)JsonConvert.SerializeObject(value), TimeSpan.FromMinutes(expireMinutes));
+            }
+            else
+            {
+                client.StringSet(key, (RedisValue)JsonConvert.SerializeObject(value));
+            }
+        }
+        public static ST GetString<ST>(string key)
+        {
+            var client = GetClient();
+            var data = client.StringGet(key);
+            if (data.IsNull)
+                return default(ST);
+            return JsonConvert.DeserializeObject<ST>(data);
+        }
+
+        public static string GetString(string key)
+        {
+            var client = GetClient();
+            return client.StringGet(key);
+        }
+
+        public static void RemoveString(string key)
+        {
+            var client = GetClient();
+            client.KeyDelete(key);
+        }
+
+        public static bool HasKey(string key)
+        {
+            var client = GetClient();
+            return client.KeyExists(key);
+        }
+
         #endregion
     }
 }
