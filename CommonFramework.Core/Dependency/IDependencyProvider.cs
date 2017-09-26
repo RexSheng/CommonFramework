@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,5 +26,14 @@ namespace CommonFramework.Core.Dependency
         /// <param name="interfaceType">被继承的类型</param>
         /// <returns></returns>
         List<InternalAssemblyInfo> GetInternalInterfaces(Assembly assembly, Type interfaceType);
+
+    
+
+        /// <summary>
+        /// 依赖注入
+        /// </summary>
+        /// <typeparam name="TContainer">容器</typeparam>
+        /// <param name="types"></param>
+        //void Register<TContainer>(Expression<Action<TContainer,IDependencyProvider>> types) where TContainer:IDisposable;
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommonFramework.Core.EntityFramework;
 using CommonFramework.Core.Email;
+using System.Linq.Expressions;
 
 namespace CommonFramework.Core.Dependency
 {
@@ -104,6 +105,7 @@ namespace CommonFramework.Core.Dependency
             return list;
 
         }
+       
         private LifeTimeOption getLifeTime(Type[] types)
         {
             if (types.Contains(typeof(ITransientDependency)))

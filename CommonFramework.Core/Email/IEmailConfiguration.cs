@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq;
 using System.Linq.Expressions;
 using CommonFramework.Core.Dependency;
 
 namespace CommonFramework.Core.Email
 {
+    /// <summary>
+    /// 邮件配置接口
+    /// </summary>
     public interface IEmailConfiguration:ITransientDependency
     {
         /// <summary>

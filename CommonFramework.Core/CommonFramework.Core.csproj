@@ -72,7 +72,9 @@
     <Compile Include="EntityFramework\IBaseRepository.cs" />
     <Compile Include="EntityFramework\PagedList\CommonPagedList.cs" />
     <Compile Include="EntityFramework\PagedList\PagedListExtension.cs" />
+    <Compile Include="Linq\PredicateBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Thread\AsyncHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Encrypt\" />
