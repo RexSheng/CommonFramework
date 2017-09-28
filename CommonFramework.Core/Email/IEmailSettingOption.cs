@@ -7,8 +7,21 @@ using CommonFramework.Core.Dependency;
 
 namespace CommonFramework.Core.Email
 {
-    public interface IEmailSettingOption:ISingletonDependency
+    public interface IEmailSettingOption:ITransientDependency
     {
+        /// <summary>
+        /// 设置key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        IEmailSettingOption setKey(string key);
+
+        /// <summary>
+        /// 是否默认
+        /// </summary>
+        /// <param name="isDefault"></param>
+        /// <returns></returns>
+        IEmailSettingOption isDefault();
         /// <summary>
         /// 邮件服务器地址，例如smtp.exmail.qq.com，smtp.126.com
         /// </summary>
@@ -49,5 +62,7 @@ namespace CommonFramework.Core.Email
         /// </summary>
         /// <returns></returns>
         EmailSettings getSetting();
+
+        void clearSetting();
     }
 }

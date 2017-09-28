@@ -9,6 +9,7 @@ namespace CommonFramework.Core.Email
 {
     public class EmailConfiguration : IEmailConfiguration
     {
+        private List<EmailSettings> _allSettings = new List<EmailSettings>();
         private readonly IEmailSettingOption _setting;
         public EmailConfiguration(IEmailSettingOption setting)
         {
@@ -18,11 +19,20 @@ namespace CommonFramework.Core.Email
         {
             var action = option.Compile();
             action.Invoke(_setting);
+            _allSettings.Add(_setting.getSetting());
+            _setting.clearSetting();
         }
 
-        public EmailSettings GetSettingOption()
+        public EmailSettings GetSettingOption(string key=null)
         {
-            return _setting.getSetting();
+            var a= _allSettings.Where(m=>string.IsNullOrEmpty(key)?m.IsDefault:m.SettingKey.Equals(key)).FirstOrDefault();
+            if (a != null) {
+                return a;
+            }
+            else
+            {
+                return _allSettings.FirstOrDefault();
+            }
         }
     }
 }

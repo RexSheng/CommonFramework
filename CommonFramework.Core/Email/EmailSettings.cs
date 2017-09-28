@@ -8,6 +8,32 @@ namespace CommonFramework.Core.Email
 {
     public class EmailSettings
     {
+        private string _key;
+
+        public string SettingKey
+        {
+            get
+            {
+                return _key;
+            }
+            set
+            {
+                _key = value;
+            }
+        }
+
+        private Nullable<bool> _isDefault;
+        public bool IsDefault
+        {
+            get
+            {
+                return _isDefault.HasValue?_isDefault.Value:false;
+            }
+            set
+            {
+                _isDefault = value;
+            }
+        }
         private string _host;
         public string Host
         {

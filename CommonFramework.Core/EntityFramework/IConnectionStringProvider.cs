@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,7 +32,7 @@ namespace CommonFramework.Core.EntityFramework
         /// </summary>
         /// <param name="customerConnectionGetter">字符串获取方法</param>
         /// <param name="defaultConnKey"></param>
-        void SetConnectionStringProvider(Func<object, string> customerConnectionGetter, object defaultConnKey);
+        void SetConnectionStringProvider(Expression<Func<object, string>> customerConnectionGetter, object defaultConnKey);
 
         /// <summary>
         /// 获取链接字符串

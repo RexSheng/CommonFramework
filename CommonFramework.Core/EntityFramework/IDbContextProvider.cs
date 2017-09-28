@@ -13,7 +13,7 @@ namespace CommonFramework.Core.EntityFramework
     /// </summary>
     public interface IDbContextProvider : IInternalDependency
     {
-        TDbContext GetContext<TDbContext, TConnectionString>(TConnectionString dbIndex) where TDbContext : DbContext;
+        TDbContext GetContext<TDbContext>(object dbIndex) where TDbContext : DbContext;
 
         TDbContext GetContext<TDbContext>(string conn) where TDbContext : DbContext;
     }

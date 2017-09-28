@@ -24,7 +24,7 @@ namespace CommonFramework.Core.EntityFramework
         {
             _connectionStringProvider = connectionStringProvider;
         }
-        public TDbContext GetContext<TDbContext, TConnectionString>(TConnectionString dbIndex) where TDbContext : DbContext
+        public TDbContext GetContext<TDbContext>(object dbIndex) where TDbContext : DbContext
         {
             string conn = _connectionStringProvider.GetConnectionString(dbIndex);
             return GetContext<TDbContext>(conn);

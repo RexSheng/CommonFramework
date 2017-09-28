@@ -16,13 +16,7 @@ namespace CommonFramework.Core.Dependency
         {
             var assembly = this.GetType().Assembly;
             List<InternalAssemblyInfo> list = new List<InternalAssemblyInfo>();
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(IBaseRepository<,,>),
-                ImplementType = typeof(BaseRepository<,,>),
-                LifeStyle = LifeTimeOption.Transient
-            });
+             
             list.Add(new InternalAssemblyInfo()
             {
                 Assembly = assembly,
@@ -49,14 +43,14 @@ namespace CommonFramework.Core.Dependency
                 Assembly = assembly,
                 InterfaceType = typeof(IEmailSettingOption),
                 ImplementType = typeof(EmailSettingOption),
-                LifeStyle = LifeTimeOption.Singleton
+                LifeStyle = LifeTimeOption.Transient
             });
             list.Add(new InternalAssemblyInfo()
             {
                 Assembly = assembly,
                 InterfaceType = typeof(IEmailConfiguration),
                 ImplementType = typeof(EmailConfiguration),
-                LifeStyle = LifeTimeOption.Transient
+                LifeStyle = LifeTimeOption.Singleton
             });
             list.Add(new InternalAssemblyInfo()
             {

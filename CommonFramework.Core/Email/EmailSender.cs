@@ -18,20 +18,20 @@ namespace CommonFramework.Core.Email
             _configuration = configuration;
             mail = new MailMessage();
         }
-        private EmailSettings getSettings()
+        private EmailSettings getSettings(string senderKey)
         {
-            return _configuration.GetSettingOption();
+            return _configuration.GetSettingOption(senderKey);
         }
-        public bool SendEmail(string To, string Name, string Subject, string Content, string AttachmentsPath = "", string MediaType = MediaTypeNames.Application.Octet)
+        public bool SendEmail(string To, string Name, string Subject, string Content, string AttachmentsPath = "", string MediaType = MediaTypeNames.Application.Octet, string senderKey = null)
         {
-            return SendEmail(new List<string[]>() { new string[] { To, Name } }, Subject, Content, AttachmentsPath, MediaType);
+            return SendEmail(new List<string[]>() { new string[] { To, Name } }, Subject, Content, AttachmentsPath, MediaType,senderKey);
 
         }
 
-        public bool SendEmail(List<string[]> To, string Subject, string Content, string AttachmentsPath = "", string MediaType = MediaTypeNames.Application.Octet)
+        public bool SendEmail(List<string[]> To, string Subject, string Content, string AttachmentsPath = "", string MediaType = MediaTypeNames.Application.Octet, string senderKey = null)
         {
             SmtpClient client = new SmtpClient();
-            var setting = getSettings();
+            var setting = getSettings(senderKey);
             //获取或设置用于验证发件人身份的凭据。
             if (!string.IsNullOrEmpty(setting.EmailSenderName))
             {

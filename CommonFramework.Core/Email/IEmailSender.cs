@@ -10,9 +10,9 @@ namespace CommonFramework.Core.Email
 {
     public interface IEmailSender:ITransientDependency
     {
-        bool SendEmail(string To, string Name, string Subject, string Content, string AttachmentsPath = "", string MediaType = MediaTypeNames.Application.Octet);
+        bool SendEmail(string To, string Name, string Subject, string Content, string AttachmentsPath = "", string MediaType = MediaTypeNames.Application.Octet, string senderKey = null);
 
-        bool SendEmail(List<string[]> To, string Subject, string Content, string AttachmentsPath = "", string MediaType = MediaTypeNames.Application.Octet);
+        bool SendEmail(List<string[]> To, string Subject, string Content, string AttachmentsPath = "", string MediaType = MediaTypeNames.Application.Octet, string senderKey = null);
 
     }
 }

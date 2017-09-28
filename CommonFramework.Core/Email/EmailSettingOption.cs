@@ -9,6 +9,15 @@ namespace CommonFramework.Core.Email
     public class EmailSettingOption : IEmailSettingOption
     {
         private EmailSettings setting=new EmailSettings();
+        public IEmailSettingOption setKey(string key)
+        {
+            setting.SettingKey = key;
+            return this;
+        }
+        public IEmailSettingOption isDefault() {
+            setting.IsDefault = true;
+            return this;
+        }
         public IEmailSettingOption setHost(string host)
         {
             setting.Host = host;
@@ -40,7 +49,20 @@ namespace CommonFramework.Core.Email
 
         public EmailSettings getSetting()
         {
-            return setting;
+            return new EmailSettings() {
+                SettingKey=setting.SettingKey,
+                Host=setting.Host,
+                Port=setting.Port,
+                EmailPwd=setting.EmailPwd,
+                EmailSenderName=setting.EmailSenderName,
+                IsDefault=setting.IsDefault,
+                SenderAddress=setting.SenderAddress
+            };
+        }
+
+        public void clearSetting()
+        {
+            setting = new EmailSettings();
         }
     }
 

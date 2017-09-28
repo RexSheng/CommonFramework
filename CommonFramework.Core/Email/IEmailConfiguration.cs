@@ -19,7 +19,7 @@ namespace CommonFramework.Core.Email
         /// 获取配置
         /// </summary>
         /// <returns></returns>
-        EmailSettings GetSettingOption();
+        EmailSettings GetSettingOption(string key=null);
     }
 
 

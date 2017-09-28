@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace CommonFramework.Core.EntityFramework
         /// <summary>
         /// 自定义获取方法
         /// </summary>
-        private Func<object, string> _customerConnectionGetter;
+        private Expression<Func<object, string>> _customerConnectionGetter;
         /// <summary>
         /// 默认连接key
         /// </summary>
@@ -51,7 +52,7 @@ namespace CommonFramework.Core.EntityFramework
             return connKey.ToString();
         }
 
-        public void SetConnectionStringProvider(Func<object, string> customerConnectionGetter, object defaultConnKey)
+        public void SetConnectionStringProvider(Expression<Func<object, string>> customerConnectionGetter, object defaultConnKey)
         {
             _customerConnectionGetter = customerConnectionGetter;
             _defaultConnKey = defaultConnKey;
@@ -66,7 +67,7 @@ namespace CommonFramework.Core.EntityFramework
             }
             else
             {
-                return _customerConnectionGetter(conn);
+                return _customerConnectionGetter.Compile().Invoke(conn);
             }
         }
     }
