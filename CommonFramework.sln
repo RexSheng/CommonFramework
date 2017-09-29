@@ -3,19 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonFramework.SqlServer", "CommonFramework.SqlServer\CommonFramework.SqlServer.csproj", "{182A520F-ACB9-4278-9524-253B2BEC0EA2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonFramework.MySql", "CommonFramework.MySql\CommonFramework.MySql.csproj", "{639811CE-EFA7-49E3-9A59-34F8FFCDBE80}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonFramework.Oracle", "CommonFramework.Oracle\CommonFramework.Oracle.csproj", "{795AE447-8A89-441D-A9D3-0D440A192C14}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonFramework.Extension", "CommonFramework.Extension\CommonFramework.Extension.csproj", "{A500D676-2DEC-450D-8486-8BCF432E923B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonFramework.Test", "CommonFramework.Test\CommonFramework.Test.csproj", "{C842FDB4-DF11-48E9-BBB8-4E93E74596D4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonFramework.Redis", "CommonFramework.Redis\CommonFramework.Redis.csproj", "{451FE034-2CC8-4371-99B9-2C5AB89A3835}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonFramework.DTO", "CommonFramework.DTO\CommonFramework.DTO.csproj", "{696466CA-9AD1-4668-B5B5-C7B02BBE6D04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonFramework.Core", "CommonFramework.Core\CommonFramework.Core.csproj", "{D54A30DE-9445-4DEC-B6FC-619B9847C280}"
 EndProject
@@ -35,34 +23,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{182A520F-ACB9-4278-9524-253B2BEC0EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{182A520F-ACB9-4278-9524-253B2BEC0EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{182A520F-ACB9-4278-9524-253B2BEC0EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{182A520F-ACB9-4278-9524-253B2BEC0EA2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{639811CE-EFA7-49E3-9A59-34F8FFCDBE80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{639811CE-EFA7-49E3-9A59-34F8FFCDBE80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{639811CE-EFA7-49E3-9A59-34F8FFCDBE80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{639811CE-EFA7-49E3-9A59-34F8FFCDBE80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{795AE447-8A89-441D-A9D3-0D440A192C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{795AE447-8A89-441D-A9D3-0D440A192C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{795AE447-8A89-441D-A9D3-0D440A192C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{795AE447-8A89-441D-A9D3-0D440A192C14}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A500D676-2DEC-450D-8486-8BCF432E923B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A500D676-2DEC-450D-8486-8BCF432E923B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A500D676-2DEC-450D-8486-8BCF432E923B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A500D676-2DEC-450D-8486-8BCF432E923B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C842FDB4-DF11-48E9-BBB8-4E93E74596D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C842FDB4-DF11-48E9-BBB8-4E93E74596D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C842FDB4-DF11-48E9-BBB8-4E93E74596D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C842FDB4-DF11-48E9-BBB8-4E93E74596D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{451FE034-2CC8-4371-99B9-2C5AB89A3835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{451FE034-2CC8-4371-99B9-2C5AB89A3835}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{451FE034-2CC8-4371-99B9-2C5AB89A3835}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{451FE034-2CC8-4371-99B9-2C5AB89A3835}.Release|Any CPU.Build.0 = Release|Any CPU
-		{696466CA-9AD1-4668-B5B5-C7B02BBE6D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{696466CA-9AD1-4668-B5B5-C7B02BBE6D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{696466CA-9AD1-4668-B5B5-C7B02BBE6D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{696466CA-9AD1-4668-B5B5-C7B02BBE6D04}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D54A30DE-9445-4DEC-B6FC-619B9847C280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D54A30DE-9445-4DEC-B6FC-619B9847C280}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D54A30DE-9445-4DEC-B6FC-619B9847C280}.Release|Any CPU.ActiveCfg = Release|Any CPU
