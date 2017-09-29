@@ -61,19 +61,17 @@
     <Compile Include="AdoNet\BaseDao.cs" />
     <Compile Include="AdoNet\IBaseDao.cs" />
     <Compile Include="AdoNet\Provider.cs" />
-    <Compile Include="EntityFramework\BaseDao.cs" />
-    <Compile Include="EntityFramework\CommonClass.cs" />
-    <Compile Include="EntityFramework\DbContextProvider.cs" />
-    <Compile Include="EntityFramework\IBaseDao.cs" />
-    <Compile Include="EntityFramework\ICommonInterface.cs" />
-    <Compile Include="EntityFramework\Provider.cs" />
-    <Compile Include="PagedList\PagedList.cs" />
-    <Compile Include="PagedList\PagedListExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonFramework.Core\CommonFramework.Core.csproj">
+      <Project>{d54a30de-9445-4dec-b6fc-619b9847c280}</Project>
+      <Name>CommonFramework.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
