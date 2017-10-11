@@ -15,17 +15,18 @@ namespace CommonFramework.Core.Email
         {
             _setting = setting;
         }
-        public void Config(Expression<Action<IEmailSettingOption>> option)
+        public IEmailConfiguration Config(Expression<Action<IEmailSettingOption>> option)
         {
             var action = option.Compile();
             action.Invoke(_setting);
             _allSettings.Add(_setting.getSetting());
             _setting.clearSetting();
+            return this;
         }
 
         public EmailSettings GetSettingOption(string key=null)
         {
-            var a= _allSettings.Where(m=>string.IsNullOrEmpty(key)?m.IsDefault:m.SettingKey.Equals(key)).FirstOrDefault();
+            var a= _allSettings.Where(m=>string.IsNullOrEmpty(key)?m.IsDefault:m.SettingKey.Equals(key)).LastOrDefault();
             if (a != null) {
                 return a;
             }

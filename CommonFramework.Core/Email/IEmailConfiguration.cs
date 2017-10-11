@@ -13,7 +13,7 @@ namespace CommonFramework.Core.Email
         /// 配置邮件
         /// </summary>
         /// <param name="option"></param>
-        void Config(Expression<Action<IEmailSettingOption>> option);
+        IEmailConfiguration Config(Expression<Action<IEmailSettingOption>> option);
 
         /// <summary>
         /// 获取配置
