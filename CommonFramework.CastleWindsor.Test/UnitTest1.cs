@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
+using CommonFramework.Core.Configure;
 
 namespace CommonFramework.CastleWindsor.Test
 {
@@ -19,11 +20,22 @@ namespace CommonFramework.CastleWindsor.Test
     public class UnitTest1
     {
         [TestMethod]
-        public void TestGetList2()
+        public void CastleMultiResolve()
         {
             Init();
             var resolverTest = IocContainer.Instance.Resolve<ITestService>();
             var list = resolverTest.getList();
+            var resolverTest11 = IocContainer.Instance.Resolve<ITestService>(typeof(ITestService).FullName + "_" + typeof(TestService).FullName);
+            var list11 = resolverTest11.getList();
+            var resolverTest22 = IocContainer.Instance.Resolve<ITestService>(typeof(ITestService).FullName + "_" + typeof(TestService2).FullName);
+            var list22 = resolverTest22.getList();
+            Assert.AreNotEqual(list11.Count, list22.Count);
+        }
+        [TestMethod]
+        public void TestGetList2()
+        {
+            Init();
+            
             var resolver = IocContainer.Instance.Resolve<IBaseRepository<WebAPIDemoEntities, UserInfo>>();
             var list1 = resolver.GetAllList("WebAPIDemoEntities");
             var list2 = resolver.GetAllList("WebAPIDemoEntities2");
@@ -95,10 +107,10 @@ namespace CommonFramework.CastleWindsor.Test
             //_user.Add(user);
             //_user.Add("WebAPIDemoEntities2", user2);
             
-            _user.AddByTrans(user, new Action<WebAPIDemoEntities, UserInfo>((context, data) =>
+            _user.AddByTrans(user,null, new Action<WebAPIDemoEntities, UserInfo>((context, data) =>
             {
                 _user.Add(user2, "WebAPIDemoEntities2");
-            }),false);
+            }));
         }
 
         [TestMethod]
@@ -116,48 +128,22 @@ namespace CommonFramework.CastleWindsor.Test
         {
             if (IocContainer.Instance.Kernel.HasComponent(typeof(IDependencyProvider)))
                 return;
-            CastleProvider.RegisterCastle();
-            CastleProvider.Register(Assembly.GetExecutingAssembly(), typeof(IBaseDependency));
-            
+            CastleBuilderExtensions.AddCastleWindsor();
+            var app = IocContainer.Instance.Resolve<IAppBuilder>();
 
-            //if (IocContainer.Instance.Kernel.HasComponent(typeof(IDependencyProvider)))
-            //    return;
+            app.AddAssembly<IBaseDependency>(Assembly.GetExecutingAssembly());
+            app.AddEfService()
+                .SetConnectionStringProvider(m => ConnectionStringProviderExtensions.GetWebConfigConnectionString(m), "WebAPIDemoEntities");
+            app.AddEmailService()
+                .Config(cfg => cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("999").setKey("aaa"))
+                .Config(cfg => cfg.setHost("smtp.exmail.qq.com").setSenderAddress("991823949@qq.com").setEmailSenderName("shengxupeng").setEmailPwd("9999").setKey("bbb").isDefault());
 
-            //Bootstrapper.Register(new Action<IWindsorContainer>((container) =>
-            //{
-            //    var _resolver = container.Resolve<IDependencyProvider>();
-            //    var e = _resolver.GetInternalInterfaces(Assembly.GetExecutingAssembly(), typeof(IBaseDependency));
-            //    e.ForEach(m =>
-            //    {
-            //        if (m.LifeStyle == LifeTimeOption.Singleton)
-            //        {
-            //            container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestyleSingleton().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
 
-            //        }
-            //        else if (m.LifeStyle == LifeTimeOption.Transient)
-            //        {
-            //            container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestyleTransient().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-            //        }
-            //        else if (m.LifeStyle == LifeTimeOption.Scoped)
-            //        {
-            //            if (ConfigurationManager.AppSettings["WebProject"] != null && !Convert.ToBoolean(ConfigurationManager.AppSettings["WebProject"]))
-            //            {
-            //                container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestyleTransient().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-            //            }
-            //            else
-            //            {
-            //                container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestylePerWebRequest().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-            //            }
-
-            //        }
-            //    });
-            //}));
-
-            var _connStr = IocContainer.Instance.Resolve<IConnectionStringProvider>();
-            _connStr.SetConnectionStringProvider(m=>_connStr.GetWebConfigConnectionString(m), "WebAPIDemoEntities"); 
-            var _email = IocContainer.Instance.Resolve<IEmailConfiguration>();
-            _email.Config(cfg=>cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("999").setKey("aaa"));
-            _email.Config(cfg => cfg.setHost("smtp.exmail.qq.com").setSenderAddress("991823949@qq.com").setEmailSenderName("shengxupeng").setEmailPwd("9999").setKey("bbb").isDefault());
+            //var _connStr = IocContainer.Instance.Resolve<IConnectionStringProvider>();
+            //_connStr.SetConnectionStringProvider(m=>_connStr.GetWebConfigConnectionString(m), "WebAPIDemoEntities"); 
+            //var _email = IocContainer.Instance.Resolve<IEmailConfiguration>();
+            //_email.Config(cfg=>cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("999").setKey("aaa"));
+            //_email.Config(cfg => cfg.setHost("smtp.exmail.qq.com").setSenderAddress("991823949@qq.com").setEmailSenderName("shengxupeng").setEmailPwd("9999").setKey("bbb").isDefault());
 
         }
         #endregion

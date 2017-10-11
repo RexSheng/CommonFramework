@@ -13,4 +13,12 @@ namespace CommonFramework.CastleWindsor.Test
             return new List<string>() { "12", "cd" };
         }
     }
+
+    public class TestService2 : ITestService
+    {
+        public List<string> getList()
+        {
+            return new List<string>() { "332", "3fs","测试" };
+        }
+    }
 }
