@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configure\AppBuilder.cs" />
+    <Compile Include="Configure\AppServiceBuilderExtensions.cs" />
+    <Compile Include="Configure\IAppBuilder.cs" />
     <Compile Include="Dependency\DependencyProvider.cs" />
     <Compile Include="Dependency\IDependencyProvider.cs" />
     <Compile Include="Email\EmailConfiguration.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="Email\IEmailSettingOption.cs" />
     <Compile Include="EntityFramework\ConnectionStringProvider.cs" />
     <Compile Include="Dependency\IBaseDependency.cs" />
+    <Compile Include="EntityFramework\ConnectionStringProviderExtensions.cs" />
     <Compile Include="EntityFramework\IConnectionStringProvider.cs" />
     <Compile Include="EntityFramework\DbContextProvider.cs" />
     <Compile Include="EntityFramework\IDbContextProvider.cs" />

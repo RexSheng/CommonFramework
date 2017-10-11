@@ -27,7 +27,7 @@ namespace CommonFramework.Core.Dependency
         /// <returns></returns>
         List<InternalAssemblyInfo> GetInternalInterfaces(Assembly assembly, Type interfaceType);
 
-    
+        
 
         /// <summary>
         /// 依赖注入

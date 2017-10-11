@@ -29,12 +29,13 @@ namespace CommonFramework.Core.EntityFramework
         /// <returns></returns>
         public string GetWebConfigConnectionString(object connKey)
         {
-            var result = ConfigurationManager.ConnectionStrings[connKey.ToString()];
-            if (result != null)
-            {
-                return result.ToString();
-            }
-            return connKey.ToString();
+            return ConnectionStringProviderExtensions.GetWebConfigConnectionString(connKey);
+            //var result = ConfigurationManager.ConnectionStrings[connKey.ToString()];
+            //if (result != null)
+            //{
+            //    return result.ToString();
+            //}
+            //return connKey.ToString();
         }
 
         /// <summary>
@@ -44,12 +45,13 @@ namespace CommonFramework.Core.EntityFramework
         /// <returns></returns>
         public string GetAppConfigConnectionString(object connKey)
         {
-            var result = ConfigurationManager.AppSettings[connKey.ToString()];
-            if (result != null)
-            {
-                return result.ToString();
-            }
-            return connKey.ToString();
+            return ConnectionStringProviderExtensions.GetAppConfigConnectionString(connKey);
+            //var result = ConfigurationManager.AppSettings[connKey.ToString()];
+            //if (result != null)
+            //{
+            //    return result.ToString();
+            //}
+            //return connKey.ToString();
         }
 
         public void SetConnectionStringProvider(Expression<Func<object, string>> customerConnectionGetter, object defaultConnKey)
