@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="CastleBuilderExtensions.cs" />
     <Compile Include="CastleProvider.cs" />
     <Compile Include="ControllerInstaller.cs" />
     <Compile Include="ICastleProvider.cs" />

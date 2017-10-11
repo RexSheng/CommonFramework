@@ -20,52 +20,10 @@ namespace CommonFramework.CastleWindsor
             container.Register(Component.For(typeof(IDependencyProvider)).ImplementedBy(typeof(DependencyProvider)));
             var _resolver = container.Resolve<IDependencyProvider>();
             var d = _resolver.GetInternalInterfaces();
-            d.ForEach(m =>
-            {
-                if (m.LifeStyle == LifeTimeOption.Singleton)
-                {
-                    container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestyleSingleton().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-
-                }
-                else if (m.LifeStyle == LifeTimeOption.Transient)
-                {
-                    container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestyleTransient().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-                }
-                else if (m.LifeStyle == LifeTimeOption.Scoped)
-                {
-                    if (ConfigurationManager.AppSettings["WebProject"] != null && !Convert.ToBoolean(ConfigurationManager.AppSettings["WebProject"])) {
-                        container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestyleTransient().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-                    }
-                    else
-                    {
-                        container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestylePerWebRequest().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-                    }
-                }
-            });
+            container.Register(d);
+             
             var e = _resolver.GetInternalInterfaces(Assembly.GetExecutingAssembly(), typeof(IBaseDependency));
-            e.ForEach(m =>
-            {
-                if (m.LifeStyle == LifeTimeOption.Singleton)
-                {
-                    container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestyleSingleton().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-
-                }
-                else if (m.LifeStyle == LifeTimeOption.Transient)
-                {
-                    container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestyleTransient().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-                }
-                else if (m.LifeStyle == LifeTimeOption.Scoped)
-                {
-                    if (ConfigurationManager.AppSettings["WebProject"] != null && !Convert.ToBoolean(ConfigurationManager.AppSettings["WebProject"]))
-                    {
-                        container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestyleTransient().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-                    }
-                    else
-                    {
-                        container.Register(Component.For(m.InterfaceType).ImplementedBy(m.ImplementType).LifestylePerWebRequest().Named(m.InterfaceType.ToString() + "_" + m.ImplementType.ToString()));
-                    }
-                }
-            });
+            container.Register(e);
         }
     }
 }
