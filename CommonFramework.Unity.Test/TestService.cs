@@ -13,4 +13,11 @@ namespace CommonFramework.Unity.Test
             return new List<string>() { "12", "cd" };
         }
     }
+    public class TestService2 : ITestService
+    {
+        public List<string> getList()
+        {
+            return new List<string>() { "12", "cd","你好" };
+        }
+    }
 }

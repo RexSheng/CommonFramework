@@ -6,6 +6,7 @@ using CommonFramework.Unity;
 using System.Reflection;
 using CommonFramework.Core.EntityFramework;
 using CommonFramework.Core.Email;
+using CommonFramework.Core.Configure;
 
 namespace CommonFramework.Unity.Test
 {
@@ -16,9 +17,11 @@ namespace CommonFramework.Unity.Test
         public void TestUnityRegister()
         {
             Init();
-            var container = UnityProvider.GetConfiguredContainer();
+            var container = IocContainer.Instance;
             var _service = container.Resolve<ITestService>();
             var testData = _service.getList();
+            var testData2 = ((ITestService)container.Resolve(typeof(TestService))).getList();
+            var testData3 = ((ITestService)container.Resolve(typeof(TestService2))).getList();
             var resolver = container.Resolve<IBaseRepository<WebAPIDemoEntities, UserInfo>>();
             var list1 = resolver.GetAllList("WebAPIDemoEntities");
             var list2 = resolver.GetAllList("WebAPIDemoEntities2");
@@ -32,7 +35,7 @@ namespace CommonFramework.Unity.Test
         public void TestUnityGetList1()
         {
             Init();
-            var resolver = UnityProvider.GetConfiguredContainer().Resolve<IBaseRepository<UserInfo>>();
+            var resolver = IocContainer.Instance.Resolve<IBaseRepository<UserInfo>>();
             var list1 = resolver.GetAllList();
             var list2 = resolver.GetAllList("WebAPIDemoEntities2");
             var list3 = resolver.GetAllList("WebAPIDemoEntities");
@@ -45,7 +48,7 @@ namespace CommonFramework.Unity.Test
         public void TestUnityGetList0()
         {
             Init();
-            var resolver = UnityProvider.GetConfiguredContainer().Resolve<IUserRepository>();
+            var resolver = IocContainer.Instance.Resolve<IUserRepository>();
             var list1 = resolver.GetAllList("WebAPIDemoEntities");
             var list2 = resolver.GetAllList("WebAPIDemoEntities2");
             var list3 = resolver.GetAllList("WebAPIDemoEntities");
@@ -56,15 +59,18 @@ namespace CommonFramework.Unity.Test
         }
         private void Init()
         {
-            var container = UnityProvider.GetConfiguredContainer();
+            var container = IocContainer.Instance;
             if (container.IsRegistered(typeof(ITestService)))
                 return;
-            UnityProvider.StartUp();
-            UnityProvider.Register(Assembly.GetExecutingAssembly(), typeof(IBaseDependency));
-            var _connStr = container.Resolve<IConnectionStringProvider>();
-            _connStr.SetConnectionStringProvider(m=>_connStr.GetAppConfigConnectionString(m), "WebAPIDemoEntities");
-            var _email = container.Resolve<IEmailConfiguration>();
-            _email.Config(cfg => cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("asdfasf"));
+            UnityBuilderExtensions.AddUnity();
+            var app = IocContainer.Instance.Resolve<IAppBuilder>();
+            app.AddAssembly<IBaseDependency>(Assembly.GetExecutingAssembly());
+            app.AddEfService()
+                .SetConnectionStringProvider(m => ConnectionStringProviderExtensions.GetAppConfigConnectionString(m), "WebAPIDemoEntities");
+            app.AddEmailService()
+                .Config(cfg => cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("999").setKey("aaa"))
+                .Config(cfg => cfg.setHost("smtp.exmail.qq.com").setSenderAddress("991823949@qq.com").setEmailSenderName("shengxupeng").setEmailPwd("9999").setKey("bbb").isDefault());
+ 
         }
     }
 }
