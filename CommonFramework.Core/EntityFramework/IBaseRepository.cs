@@ -363,37 +363,48 @@ namespace CommonFramework.Core.EntityFramework
         /// <param name="conn"></param>
         /// <returns></returns>
         Task<T> GetEntityAsync<T>(string sql, object conn = null);
-        
+
         /// <summary>
         /// 先执行sql,然后添加数据实体
         /// </summary>
         /// <param name="conn">连接字符串</param>
         /// <param name="entity">要添加的数据实体</param>
-        /// <param name="otherAction">事务中对context执行的其他操作</param>
-        /// <param name="actionFirst">true：otherAction先执行</param>
+        /// <param name="beforeAction">事务中对context执行前的其他操作</param>
+        /// <param name="afterAction">事务中对context执行后的其他操作</param>
+        /// <param name="conn">字符串</param>
         /// <returns></returns>
-        bool AddByTrans( TEntity entity, Action<TDbContext, TEntity> otherAction, bool actionFirst = true, object conn = null);
+        bool AddByTrans( TEntity entity, Action<TDbContext, TEntity> beforeAction = null, Action<TDbContext, TEntity> afterAction = null, object conn = null);
 
         /// <summary>
         /// 先执行sql,然后更新数据实体
         /// </summary>
         /// <param name="conn">连接字符串</param>
         /// <param name="entity">要更新的数据实体</param>
-        /// <param name="otherAction">事务中对context执行的其他操作</param>
-        /// <param name="actionFirst">true：otherAction先执行</param>
+        /// <param name="beforeAction">事务中对context执行前的其他操作</param>
+        /// <param name="afterAction">事务中对context执行后的其他操作</param>
+        /// <param name="conn">字符串</param>
         /// <returns></returns>
-        bool UpdateByTrans( TEntity entity, Action<TDbContext, TEntity> otherAction, bool actionFirst = true, object conn = null);
+        bool UpdateByTrans( TEntity entity, Action<TDbContext, TEntity> beforeAction = null, Action<TDbContext, TEntity> afterAction = null, object conn = null);
 
         /// <summary>
         /// 先执行sql,然后删除数据实体
         /// </summary>
         /// <param name="conn">连接字符串</param>
         /// <param name="entity">要删除的数据实体</param>
-        /// <param name="otherAction">事务中对context执行的其他操作</param>
-        /// <param name="actionFirst">true：otherAction先执行</param>
+        /// <param name="beforeAction">事务中对context执行前的其他操作</param>
+        /// <param name="afterAction">事务中对context执行后的其他操作</param>
+        /// <param name="conn">字符串</param>
         /// <returns></returns>
-        bool DeleteByTrans( TEntity entity, Action<TDbContext, TEntity> otherAction, bool actionFirst = true, object conn = null);
+        bool DeleteByTrans( TEntity entity, Action<TDbContext, TEntity> beforeAction = null, Action<TDbContext, TEntity> afterAction = null, object conn = null);
 
+        /// <summary>
+        /// dbcontext事物操作
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="conn"></param>
+        /// <returns></returns>
+        bool DbTransaction(Action<TDbContext> action, object conn = null);
+         
     }
 
    

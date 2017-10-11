@@ -225,24 +225,24 @@ namespace CommonFramework.Core.EntityFramework
             return GetEntityAsync<T>(conn, sql, null);
         }
 
-        public virtual bool AddByTrans(TEntity entity, Action<TDbContext, TEntity> otherAction, bool actionFirst = true, object conn = null)
+        public virtual bool AddByTrans(TEntity entity, Action<TDbContext, TEntity> beforeAction = null, Action<TDbContext, TEntity> afterAction = null, object conn = null)
         {
             TDbContext _context = GetContext(conn);
             using (var trans = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    if (actionFirst)
+                    if (beforeAction != null)
                     {
-                        otherAction.Invoke(_context, entity);
+                        beforeAction.Invoke(_context, entity);
                     }
 
                     _context.Entry<TEntity>(entity).State = System.Data.Entity.EntityState.Added;
                     _context.SaveChanges();
 
-                    if (!actionFirst)
+                    if (afterAction != null)
                     {
-                        otherAction.Invoke(_context, entity);
+                        afterAction.Invoke(_context, entity);
                     }
                     trans.Commit();
                     return true;
@@ -254,23 +254,23 @@ namespace CommonFramework.Core.EntityFramework
                 }
             }
         }
-        public virtual bool UpdateByTrans(TEntity entity, Action<TDbContext, TEntity> otherAction, bool actionFirst = true, object conn = null)
+        public virtual bool UpdateByTrans(TEntity entity, Action<TDbContext, TEntity> beforeAction = null, Action<TDbContext, TEntity> afterAction = null, object conn = null)
         {
             TDbContext _context = GetContext(conn);
             using (var trans = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    if (actionFirst)
+                    if (beforeAction != null)
                     {
-                        otherAction.Invoke(_context, entity);
+                        beforeAction.Invoke(_context, entity);
                     }
                     _context.Set<TEntity>().Attach(entity);
                     _context.Entry<TEntity>(entity).State = System.Data.Entity.EntityState.Modified;
                     _context.SaveChanges();
-                    if (!actionFirst)
+                    if (afterAction != null)
                     {
-                        otherAction.Invoke(_context, entity);
+                        afterAction.Invoke(_context, entity);
                     }
                     trans.Commit();
                     return true;
@@ -282,23 +282,23 @@ namespace CommonFramework.Core.EntityFramework
                 }
             }
         }
-        public virtual bool DeleteByTrans(TEntity entity, Action<TDbContext, TEntity> otherAction, bool actionFirst = true, object conn = null)
+        public virtual bool DeleteByTrans(TEntity entity, Action<TDbContext, TEntity> beforeAction=null, Action<TDbContext, TEntity> afterAction = null, object conn = null)
         {
             TDbContext _context = GetContext(conn);
             using (var trans = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    if (actionFirst)
+                    if (beforeAction!=null)
                     {
-                        otherAction.Invoke(_context, entity);
+                        beforeAction.Invoke(_context, entity);
                     }
                     _context.Set<TEntity>().Attach(entity);
                     _context.Entry<TEntity>(entity).State = System.Data.Entity.EntityState.Deleted;
                     _context.SaveChanges();
-                    if (!actionFirst)
+                    if (afterAction!=null)
                     {
-                        otherAction.Invoke(_context, entity);
+                        afterAction.Invoke(_context, entity);
                     }
                     trans.Commit();
                     return true;
@@ -310,6 +310,27 @@ namespace CommonFramework.Core.EntityFramework
                 }
             }
         }
+
+        public virtual bool DbTransaction(Action<TDbContext> action,object conn=null) {
+
+            TDbContext _context = GetContext(conn);
+            using (var trans = _context.Database.BeginTransaction())
+            {
+                try
+                { 
+                    action.Invoke(_context);
+                    
+                    trans.Commit();
+                    return true;
+                }
+                catch (Exception)
+                {
+                    trans.Rollback();
+                    return false;
+                }
+            }
+        }
+        
     }
 
     
