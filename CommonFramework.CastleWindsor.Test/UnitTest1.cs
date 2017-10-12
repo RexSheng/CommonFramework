@@ -13,6 +13,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
 using CommonFramework.Core.Configure;
+using CommonFramework.Core.Log;
 
 namespace CommonFramework.CastleWindsor.Test
 {
@@ -122,6 +123,17 @@ namespace CommonFramework.CastleWindsor.Test
             _email.SendEmail("991823949@qq.com", "", "这是标题", "请查看内容",senderKey:"aaa");
         }
 
+        [TestMethod]
+        public void TestLog()
+        {
+            Init();
+
+            var resolver = IocContainer.Instance.Resolve<ILog>();
+            resolver.Info("全部aaa");
+            resolver.Info("测试aaa", name: "TestLog2");
+            resolver.Debug("系统aaa", name: "SysLog2");
+            resolver.Debug("用户aaa", name: "UserLog2");
+        }
 
         #region 初始化container
         private void Init()
@@ -138,7 +150,7 @@ namespace CommonFramework.CastleWindsor.Test
                 .Config(cfg => cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("999").setKey("aaa"))
                 .Config(cfg => cfg.setHost("smtp.exmail.qq.com").setSenderAddress("991823949@qq.com").setEmailSenderName("shengxupeng").setEmailPwd("9999").setKey("bbb").isDefault());
 
-
+            app.AddLog4Net().Configure("Log.xml");
             //var _connStr = IocContainer.Instance.Resolve<IConnectionStringProvider>();
             //_connStr.SetConnectionStringProvider(m=>_connStr.GetWebConfigConnectionString(m), "WebAPIDemoEntities"); 
             //var _email = IocContainer.Instance.Resolve<IEmailConfiguration>();
