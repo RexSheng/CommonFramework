@@ -8,6 +8,7 @@ using CommonFramework.Core.EntityFramework;
 using CommonFramework.Core.Email;
 using System.Linq.Expressions;
 using CommonFramework.Core.Configure;
+using CommonFramework.Core.Log;
 
 namespace CommonFramework.Core.Dependency
 {
@@ -59,6 +60,27 @@ namespace CommonFramework.Core.Dependency
                 InterfaceType = typeof(IEmailSender),
                 ImplementType = typeof(EmailSender),
                 LifeStyle = LifeTimeOption.Transient
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(ILogConfiguration),
+                ImplementType = typeof(LogConfiguration),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(ILogProvider),
+                ImplementType = typeof(LogProvider),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(ILog),
+                ImplementType = typeof(Log4NetImplement),
+                LifeStyle = LifeTimeOption.Singleton
             });
             list.Add(new InternalAssemblyInfo()
             {

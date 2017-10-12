@@ -38,6 +38,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -77,6 +81,13 @@
     <Compile Include="EntityFramework\PagedList\CommonPagedList.cs" />
     <Compile Include="EntityFramework\PagedList\PagedListExtension.cs" />
     <Compile Include="Linq\PredicateBuilder.cs" />
+    <Compile Include="Log\ILog.cs" />
+    <Compile Include="Log\ILogConfiguration.cs" />
+    <Compile Include="Log\ILogProvider.cs" />
+    <Compile Include="Log\Log4NetImplement.cs" />
+    <Compile Include="Log\LogBuilderExtensions.cs" />
+    <Compile Include="Log\LogConfiguration.cs" />
+    <Compile Include="Log\LogProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Thread\AsyncHelper.cs" />
   </ItemGroup>
