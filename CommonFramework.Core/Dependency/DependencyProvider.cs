@@ -9,6 +9,7 @@ using CommonFramework.Core.Email;
 using System.Linq.Expressions;
 using CommonFramework.Core.Configure;
 using CommonFramework.Core.Log;
+using CommonFramework.Core.Localization;
 
 namespace CommonFramework.Core.Dependency
 {
@@ -82,6 +83,22 @@ namespace CommonFramework.Core.Dependency
                 ImplementType = typeof(Log4NetImplement),
                 LifeStyle = LifeTimeOption.Singleton
             });
+
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(ILocalizationDictionary),
+                ImplementType = typeof(LocalizationDictionary),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(ILanguageProvider),
+                ImplementType = typeof(LanguageProvider),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+
             list.Add(new InternalAssemblyInfo()
             {
                 Assembly = assembly,
