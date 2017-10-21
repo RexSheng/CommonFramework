@@ -36,11 +36,17 @@ namespace CommonFramework.Core.Localization
                 Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(langHeader);
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(langHeader);
             }
+           
+            base.OnActionExecuting(filterContext);
+        }
+
+        public override void OnResultExecuted(ResultExecutedContext filterContext)
+        {
             // save the location into cookie
             HttpCookie _cookie = new HttpCookie("RexSheng.CommonFrameworkLocalization.CurrentUICulture", Thread.CurrentThread.CurrentUICulture.Name);
             _cookie.Expires = DateTime.Now.AddYears(1);
             filterContext.HttpContext.Response.SetCookie(_cookie);
-            base.OnActionExecuting(filterContext);
+            base.OnResultExecuted(filterContext);
         }
     }
 }
