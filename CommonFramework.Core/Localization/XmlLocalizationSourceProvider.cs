@@ -34,7 +34,7 @@ namespace CommonFramework.Core.Localization
                     return element.GetAttribute("value").ToString();
                 }
             }
-            return "";
+            return key;
         }
         public Dictionary<string, string> GetAll(CultureInfo cultureInfo)
         {
