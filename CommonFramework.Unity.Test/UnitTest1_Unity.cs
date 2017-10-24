@@ -11,7 +11,7 @@ using CommonFramework.Core.Configure;
 namespace CommonFramework.Unity.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTest1_Unity
     {
         [TestMethod]
         public void TestUnityRegister()
@@ -60,16 +60,26 @@ namespace CommonFramework.Unity.Test
         private void Init()
         {
             var container = IocContainer.Instance;
-            if (container.IsRegistered(typeof(ITestService)))
-                return;
-            UnityBuilderExtensions.AddUnity();
-            var app = IocContainer.Instance.Resolve<IAppBuilder>();
-            app.AddAssembly<IBaseDependency>(Assembly.GetExecutingAssembly());
-            app.AddEfService()
+            //if (container.IsRegistered(typeof(ITestService)))
+            //    return;
+            CommonFrameworkBuilder.Initialize();
+            CommonFrameworkBuilder.AddAssembly<IBaseDependency>(Assembly.GetExecutingAssembly());
+            CommonFrameworkBuilder.AddEfService()
                 .SetConnectionStringProvider(m => ConnectionStringProviderExtensions.GetAppConfigConnectionString(m), "WebAPIDemoEntities");
-            app.AddEmailService()
+            CommonFrameworkBuilder.AddEmailService()
                 .Config(cfg => cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("999").setKey("aaa"))
                 .Config(cfg => cfg.setHost("smtp.exmail.qq.com").setSenderAddress("991823949@qq.com").setEmailSenderName("shengxupeng").setEmailPwd("9999").setKey("bbb").isDefault());
+
+            CommonFrameworkBuilder.AddLog4Net().Configure("Log.xml");
+
+            //UnityBuilderExtensions.AddUnity();
+            //var app = IocContainer.Instance.Resolve<IAppBuilder>();
+            //app.AddAssembly<IBaseDependency>(Assembly.GetExecutingAssembly());
+            //app.AddEfService()
+            //    .SetConnectionStringProvider(m => ConnectionStringProviderExtensions.GetAppConfigConnectionString(m), "WebAPIDemoEntities");
+            //app.AddEmailService()
+            //    .Config(cfg => cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("999").setKey("aaa"))
+            //    .Config(cfg => cfg.setHost("smtp.exmail.qq.com").setSenderAddress("991823949@qq.com").setEmailSenderName("shengxupeng").setEmailPwd("9999").setKey("bbb").isDefault());
  
         }
     }

@@ -15,8 +15,9 @@ namespace CommonFramework.Core.Localization
     public class LanguageProvider:ILanguageProvider
     {
         private List<LanguageInfo> _language=new List<LanguageInfo>();
-        public void AddLanguage(string code,string name,ILocalizationSourceProvider provider) {
+        public ILanguageProvider AddLanguage(string code,string name,ILocalizationSourceProvider provider) {
             _language.Add(new LanguageInfo() { LanguageCode = code, LanguageName = name,Provider=provider });
+            return this;
         }
 
         public List<LanguageInfo> GetAll() {

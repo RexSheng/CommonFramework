@@ -12,6 +12,6 @@ namespace CommonFramework.Core.Localization
 {
     public static class LocalizationBuilderExtensions
     {
-        
+        public static bool Enabled = false;
     }
 }

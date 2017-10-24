@@ -12,7 +12,7 @@ namespace CommonFramework.Core.Localization
 {
     public interface ILanguageProvider
     {
-        void AddLanguage(string code, string name, ILocalizationSourceProvider provider);
+        ILanguageProvider AddLanguage(string code, string name, ILocalizationSourceProvider provider);
 
         List<LanguageInfo> GetAll();
 

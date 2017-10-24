@@ -76,13 +76,7 @@ namespace CommonFramework.Core.Dependency
                 ImplementType = typeof(LogProvider),
                 LifeStyle = LifeTimeOption.Singleton
             });
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(ILog),
-                ImplementType = typeof(Log4NetImplement),
-                LifeStyle = LifeTimeOption.Singleton
-            });
+            
 
             list.Add(new InternalAssemblyInfo()
             {

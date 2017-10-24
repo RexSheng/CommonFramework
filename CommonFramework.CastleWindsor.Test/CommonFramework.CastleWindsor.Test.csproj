@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
@@ -78,11 +82,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseDao.cs" />
+    <Compile Include="DtoSourceClass.cs" />
     <Compile Include="IBaseDao.cs" />
     <Compile Include="ITestService.cs" />
     <Compile Include="IUserDao.cs" />
     <Compile Include="TestService.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="UnitTest1_Castle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDao.cs" />
     <Compile Include="UserDto.cs" />
@@ -144,6 +149,14 @@
     <ProjectReference Include="..\CommonFramework.Core\CommonFramework.Core.csproj">
       <Project>{d54a30de-9445-4dec-b6fc-619b9847c280}</Project>
       <Name>CommonFramework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonFramework.DTO\CommonFramework.DTO.csproj">
+      <Project>{d15a4a77-cd11-4e5a-947f-e24ca5a37983}</Project>
+      <Name>CommonFramework.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonFramework.Redis\CommonFramework.Redis.csproj">
+      <Project>{75248c8f-5393-49e8-be18-346c721c9313}</Project>
+      <Name>CommonFramework.Redis</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

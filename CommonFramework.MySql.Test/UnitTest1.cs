@@ -26,16 +26,17 @@ namespace CommonFramework.MySql.Test
         {
             if (IocContainer.Instance.Kernel.HasComponent(typeof(IDependencyProvider)))
                 return;
-            CastleProvider.RegisterCastle();
-            CastleProvider.Register(Assembly.GetExecutingAssembly(), typeof(IBaseDependency));
-             
+            CommonFrameworkBuilder.Initialize();
+            CommonFrameworkBuilder.AddAssembly<IBaseDependency>(Assembly.GetExecutingAssembly());
+            CommonFrameworkBuilder.AddEfService()
+                .SetConnectionStringProvider(m => ConnectionStringProviderExtensions.GetWebConfigConnectionString(m), "testdatabaseEntities");
+            CommonFrameworkBuilder.AddEmailService()
+                .Config(cfg => cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("999").setKey("aaa"))
+                .Config(cfg => cfg.setHost("smtp.exmail.qq.com").setSenderAddress("991823949@qq.com").setEmailSenderName("shengxupeng").setEmailPwd("9999").setKey("bbb").isDefault());
 
-            var _connStr = IocContainer.Instance.Resolve<IConnectionStringProvider>();
-            _connStr.SetConnectionStringProvider(m => _connStr.GetWebConfigConnectionString(m), "testdatabaseEntities");
-            var _email = IocContainer.Instance.Resolve<IEmailConfiguration>();
-            _email.Config(cfg => cfg.setHost("smtp.126.com").setSenderAddress("shengxupeng@126.com").setEmailSenderName("shengxupeng").setEmailPwd("999").setKey("aaa"));
-            _email.Config(cfg => cfg.setHost("smtp.exmail.qq.com").setSenderAddress("991823949@qq.com").setEmailSenderName("shengxupeng").setEmailPwd("9999").setKey("bbb").isDefault());
+            CommonFrameworkBuilder.AddLog4Net().Configure("Log.xml");
 
+            
         }
     }
 }

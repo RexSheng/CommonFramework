@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -94,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonFrameworkBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnityBuilderExtensions.cs" />
   </ItemGroup>
@@ -104,6 +109,14 @@
     <ProjectReference Include="..\CommonFramework.Core\CommonFramework.Core.csproj">
       <Project>{d54a30de-9445-4dec-b6fc-619b9847c280}</Project>
       <Name>CommonFramework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonFramework.DTO\CommonFramework.DTO.csproj">
+      <Project>{d15a4a77-cd11-4e5a-947f-e24ca5a37983}</Project>
+      <Name>CommonFramework.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonFramework.Redis\CommonFramework.Redis.csproj">
+      <Project>{75248c8f-5393-49e8-be18-346c721c9313}</Project>
+      <Name>CommonFramework.Redis</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

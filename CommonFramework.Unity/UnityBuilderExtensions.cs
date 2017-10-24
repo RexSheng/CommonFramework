@@ -106,7 +106,7 @@ namespace CommonFramework.Unity
         {
             get
             {
-                return UnityBuilderExtensions.GetConfiguredContainer();
+                return CommonFrameworkBuilder._container;
             }
         }
     }
