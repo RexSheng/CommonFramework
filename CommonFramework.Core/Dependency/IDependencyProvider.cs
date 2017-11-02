@@ -13,11 +13,6 @@ namespace CommonFramework.Core.Dependency
     /// </summary>
     public interface IDependencyProvider
     {
-        /// <summary>
-        /// 获取CommonFramework.Core程序集中所有的内部接口及其实现
-        /// </summary>
-        /// <returns></returns>
-        List<InternalAssemblyInfo> GetInternalInterfaces();
 
         /// <summary>
         /// 获取程序集中实现某个类型的所有接口及其实现类

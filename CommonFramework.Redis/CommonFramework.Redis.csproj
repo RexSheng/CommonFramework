@@ -54,7 +54,6 @@
     <Compile Include="IRedisConfiguration.cs" />
     <Compile Include="IRedisConnectionProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RedisBuilderExtensions.cs" />
     <Compile Include="RedisConfiguration.cs" />
     <Compile Include="RedisConnectionProvider.cs" />
   </ItemGroup>

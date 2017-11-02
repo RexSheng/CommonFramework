@@ -12,7 +12,6 @@ using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using CommonFramework.Core.Configure;
 using CommonFramework.Core.Log;
 using AutoMapper;
 using CommonFramework.DTO;

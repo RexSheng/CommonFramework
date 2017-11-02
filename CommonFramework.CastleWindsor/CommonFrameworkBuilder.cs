@@ -88,7 +88,33 @@ namespace CommonFramework.CastleWindsor
 
         public static IConnectionStringProvider AddEfService(Action<IConnectionStringProvider> action = null)
         {
-            var _connectionStringProvider = IocContainer.Instance.Resolve<IConnectionStringProvider>();
+            List<InternalAssemblyInfo> list = new List<InternalAssemblyInfo>();
+            var assembly=Assembly.GetExecutingAssembly();
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(IBaseRepository<,>),
+                ImplementType = typeof(BaseRepository<,>),
+                LifeStyle = LifeTimeOption.Transient
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(IConnectionStringProvider),
+                ImplementType = typeof(ConnectionStringProvider),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(IDbContextProvider),
+                ImplementType = typeof(DbContextProvider),
+                LifeStyle = LifeTimeOption.Scoped
+            });
+            var container = IocContainer.Instance;
+            container.Register(list);
+
+            var _connectionStringProvider = container.Resolve<IConnectionStringProvider>();
             if (action != null)
             {
                 action.Invoke(_connectionStringProvider);
@@ -98,7 +124,32 @@ namespace CommonFramework.CastleWindsor
 
         public static IEmailConfiguration AddEmailService(Action<IEmailConfiguration> action = null)
         {
-            var _emailConfiguration = IocContainer.Instance.Resolve<IEmailConfiguration>();
+            List<InternalAssemblyInfo> list = new List<InternalAssemblyInfo>();
+            var assembly = Assembly.GetExecutingAssembly();
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(IEmailSettingOption),
+                ImplementType = typeof(EmailSettingOption),
+                LifeStyle = LifeTimeOption.Transient
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(IEmailConfiguration),
+                ImplementType = typeof(EmailConfiguration),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(IEmailSender),
+                ImplementType = typeof(EmailSender),
+                LifeStyle = LifeTimeOption.Transient
+            });
+            var container = IocContainer.Instance;
+            container.Register(list);
+            var _emailConfiguration = container.Resolve<IEmailConfiguration>();
             if (action != null)
             {
                 action.Invoke(_emailConfiguration);
@@ -109,9 +160,24 @@ namespace CommonFramework.CastleWindsor
         public static ILogConfiguration AddLog4Net()
         {
             List<InternalAssemblyInfo> list = new List<InternalAssemblyInfo>();
+            var assembly = Assembly.GetExecutingAssembly();
             list.Add(new InternalAssemblyInfo()
             {
-                Assembly = Assembly.GetExecutingAssembly(),
+                Assembly = assembly,
+                InterfaceType = typeof(ILogConfiguration),
+                ImplementType = typeof(LogConfiguration),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(ILogProvider),
+                ImplementType = typeof(LogProvider),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
                 InterfaceType = typeof(ILog),
                 ImplementType = typeof(Log4NetImplement),
                 LifeStyle = LifeTimeOption.Singleton
@@ -136,13 +202,56 @@ namespace CommonFramework.CastleWindsor
 
         public static IRedisConfiguration AddRedisService()
         {
+            List<InternalAssemblyInfo> list = new List<InternalAssemblyInfo>();
+            var assembly = Assembly.GetExecutingAssembly();
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(IRedisConfiguration),
+                ImplementType = typeof(RedisConfiguration),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(IRedisConnectionProvider),
+                ImplementType = typeof(RedisConnectionProvider),
+                LifeStyle = LifeTimeOption.Transient
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(IBaseRedis),
+                ImplementType = typeof(BaseRedis),
+                LifeStyle = LifeTimeOption.Transient
+            });
             var container = IocContainer.Instance;
+            container.Register(list);
+            
             return container.Resolve<IRedisConfiguration>();
         }
 
         public static ILanguageProvider AddLocalization()
         {
+            List<InternalAssemblyInfo> list = new List<InternalAssemblyInfo>();
+            var assembly = Assembly.GetExecutingAssembly();
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(ILocalizationDictionary),
+                ImplementType = typeof(LocalizationDictionary),
+                LifeStyle = LifeTimeOption.Singleton
+            });
+            list.Add(new InternalAssemblyInfo()
+            {
+                Assembly = assembly,
+                InterfaceType = typeof(ILanguageProvider),
+                ImplementType = typeof(LanguageProvider),
+                LifeStyle = LifeTimeOption.Singleton
+            });
             var container = IocContainer.Instance;
+            container.Register(list);
+            
             return container.Resolve<ILanguageProvider>();
         }
 

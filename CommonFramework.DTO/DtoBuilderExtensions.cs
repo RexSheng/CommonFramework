@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using System.Reflection;
-using CommonFramework.Core.Configure;
 using AutoMapper.QueryableExtensions;
 
 /*

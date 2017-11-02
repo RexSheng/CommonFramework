@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using CommonFramework.Core.EntityFramework;
 using CommonFramework.Core.Email;
 using System.Linq.Expressions;
-using CommonFramework.Core.Configure;
 using CommonFramework.Core.Log;
 using CommonFramework.Core.Localization;
 
@@ -15,93 +14,6 @@ namespace CommonFramework.Core.Dependency
 {
     public class DependencyProvider : IDependencyProvider, ITransientDependency
     {
-        public List<InternalAssemblyInfo> GetInternalInterfaces()
-        {
-            var assembly = this.GetType().Assembly;
-            List<InternalAssemblyInfo> list = new List<InternalAssemblyInfo>();
-             
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(IBaseRepository<,>),
-                ImplementType = typeof(BaseRepository<,>),
-                LifeStyle = LifeTimeOption.Transient
-            });
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(IConnectionStringProvider),
-                ImplementType = typeof(ConnectionStringProvider),
-                LifeStyle = LifeTimeOption.Singleton
-            });
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(IDbContextProvider),
-                ImplementType = typeof(DbContextProvider),
-                LifeStyle = LifeTimeOption.Scoped
-            });
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(IEmailSettingOption),
-                ImplementType = typeof(EmailSettingOption),
-                LifeStyle = LifeTimeOption.Transient
-            });
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(IEmailConfiguration),
-                ImplementType = typeof(EmailConfiguration),
-                LifeStyle = LifeTimeOption.Singleton
-            });
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(IEmailSender),
-                ImplementType = typeof(EmailSender),
-                LifeStyle = LifeTimeOption.Transient
-            });
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(ILogConfiguration),
-                ImplementType = typeof(LogConfiguration),
-                LifeStyle = LifeTimeOption.Singleton
-            });
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(ILogProvider),
-                ImplementType = typeof(LogProvider),
-                LifeStyle = LifeTimeOption.Singleton
-            });
-            
-
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(ILocalizationDictionary),
-                ImplementType = typeof(LocalizationDictionary),
-                LifeStyle = LifeTimeOption.Singleton
-            });
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(ILanguageProvider),
-                ImplementType = typeof(LanguageProvider),
-                LifeStyle = LifeTimeOption.Singleton
-            });
-
-            list.Add(new InternalAssemblyInfo()
-            {
-                Assembly = assembly,
-                InterfaceType = typeof(IAppBuilder),
-                ImplementType = typeof(AppBuilder),
-                LifeStyle = LifeTimeOption.Singleton
-            });
-            return list;
-        }
         public List<InternalAssemblyInfo> GetInternalInterfaces(Assembly assembly, Type interfaceType)
         {
             List<InternalAssemblyInfo> list = new List<InternalAssemblyInfo>();

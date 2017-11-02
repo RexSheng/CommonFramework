@@ -18,12 +18,12 @@ namespace CommonFramework.CastleWindsor
         {
             
             container.Register(Component.For(typeof(IDependencyProvider)).ImplementedBy(typeof(DependencyProvider)));
-            var _resolver = container.Resolve<IDependencyProvider>();
-            var d = _resolver.GetInternalInterfaces();
-            container.Register(d);
+            //var _resolver = container.Resolve<IDependencyProvider>();
+            //var d = _resolver.GetInternalInterfaces();
+            //container.Register(d);
              
-            var e = _resolver.GetInternalInterfaces(Assembly.GetExecutingAssembly(), typeof(IBaseDependency));
-            container.Register(e);
+            //var e = _resolver.GetInternalInterfaces(Assembly.GetExecutingAssembly(), typeof(IBaseDependency));
+            //container.Register(e);
         }
     }
 }

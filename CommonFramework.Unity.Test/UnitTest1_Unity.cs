@@ -6,7 +6,6 @@ using CommonFramework.Unity;
 using System.Reflection;
 using CommonFramework.Core.EntityFramework;
 using CommonFramework.Core.Email;
-using CommonFramework.Core.Configure;
 
 namespace CommonFramework.Unity.Test
 {

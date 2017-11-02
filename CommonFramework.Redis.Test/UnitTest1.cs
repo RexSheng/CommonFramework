@@ -3,7 +3,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CommonFramework.CastleWindsor;
 using System.Reflection;
 using CommonFramework.Core.Dependency;
-using CommonFramework.Core.Configure;
 using CommonFramework.Core.EntityFramework;
 using CommonFramework.Core.Email;
 
