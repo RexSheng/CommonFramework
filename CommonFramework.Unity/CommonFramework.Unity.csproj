@@ -100,7 +100,7 @@
   <ItemGroup>
     <Compile Include="CommonFrameworkBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnityBuilderExtensions.cs" />
+    <Compile Include="IocContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
